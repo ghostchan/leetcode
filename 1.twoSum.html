@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+Given an array of integers, find two numbers such that they add up to a specific target number.
+
+The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be
+less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+
+You may assume that each input would have exactly one solution.
+
+Input: numbers={2, 7, 11, 15}, target=9
+Output: index1=1, index2=2
+给定一个数组和一个目标值，找到数组中两个值的和与目标值相同的元素，并返回元素在数组中的位置，数组中位置的起始值为1。
+
+
+<script type="text/javascript">
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number[]}
+     */
+    var twoSum = function (nums, target) {
+        var len = nums.length;
+        var map = {};
+        for (var i = 0; i < len; i++) {
+            cur = nums[i];
+            if (map[cur]) {
+                map[cur].push(i);
+            } else {
+                map[cur] = [i];
+            }
+        }
+        for (var key in map) {
+            if (map[target - key]) {
+                if (target - key == key) {
+                    return [map[key][0], map[key][1]];
+                }
+                return [map[key][0], map[target - key][0]];
+            }
+        }
+    };
+
+
+    /* 验证*/
+    var numbers = [2, 7, 11, 15];
+    var target = 26;
+    console.log(twoSum(numbers, target));
+</script>
+</body>
+</html>
