@@ -55,10 +55,19 @@ Output: index1=1, index2=2
             }
         }
     };
-    
+    /*第三种解法*/
+    var twoSum = function(nums, target) {
+        var hash = {};
+        for (var i = 0, len = nums.length; i < len; ++i) {
+            if (hash[target - nums[i]] !== undefined) {
+                return [hash[target - nums[i]], i + 1];
+            }
+            hash[nums[i]] = hash[nums[i]] || i + 1;
+        }
+    };
     /* 验证*/
     var numbers = [2, 7, 11, 15];
-    var target = 26;
+    var target = 13;
     console.log(twoSum(numbers, target));
 </script>
 </body>
